@@ -1,0 +1,155 @@
+<div class="site-container">
+    <div class="profile-container" ng-controller="helloController">
+        <h1>Hello {{user.firstName}}!</h1>
+        <p>Need to change account?<span class="logout-btn" ng-click="logOut()">Log out</span> </p>
+        <div class="row">
+            <div class="col-lg-6 col-6"> <button class="bar-btn active-btn"
+                    ng-class="{'active-btn': openAccount == true , 'not-active-btn': openAccount == false } "
+                    ng-click="openAccountFunc()"> Account</button> </div>
+            <div class="col-lg-6 col-6"> <button class="bar-btn not-active-btn"
+                    ng-class="{'active-btn': openAccount == false , 'not-active-btn': openAccount == true } "
+                    ng-click="openAccountFunc()"> Settings</button> </div>
+        </div>
+        <div ng-If="openAccount==true">
+            <div class="row pt-5">
+                <h3 class="col-lg-10 col-10">Personal information</h3>
+                <div class="col-lg-2 col-2 d-flex align-btn"> <button ng-if="editInfo==false" class="edit-btn"
+                        ng-click="editInfoFunc()">Edit</button> <button ng-if="editInfo==true" class="edit-btn"
+                        ng-click="editInfoFunc()">close</button> </div>
+            </div>
+            <div class="row">
+                <div ng-if="editInfo==false" class="col-lg-12 col-12">
+                    <p>{{userInfoData[0].FirstName }} {{userInfoData[0].LastName}}</p>
+                    <p class="add-p mb-0">Add birthdate</p>
+                </div>
+                <div ng-if="editInfo==true" class="col-lg-6 col-12">
+                    <p class="title-of-item">First name</p> <input class="input-login hello-input" value="issa"
+                        ng-model="user.firstName">
+                    <p class="title-of-item">Last name</p> <input class="input-login hello-input" value="Mari"
+                        ng-model="user.lastName"> <input class="input-login hello-input"
+                        placeholder="Birthdate (Optional)" ng-model="user.Birthdate"> <button
+                        class="cancel-btn-lg mb-2"> <a href="/en/create-profile"> Cancel</a> </button> <button
+                        class="login-btn" ng-click="saveEditInfoFunc()"> <a href="/en/hello-page">Save changes</a>
+                    </button>
+                </div>
+                <hr class="hr-profile">
+            </div>
+            <div class="row pt-5">
+                <h3 class="col-lg-10 col-10">Contact</h3>
+                <div class="col-lg-2 col-2 d-flex align-btn"> <button ng-if="editContant==false" class="edit-btn"
+                        ng-click="editContantFunc()">Edit</button> <button ng-if="editContant==true" class="edit-btn"
+                        ng-click="editContantFunc()">close</button> </div>
+            </div>
+            <div class="row">
+                <div ng-if="editContant==false" class="col-lg-10 col-10">
+                    <p>{{userInfoData[0].Mobile}}</p>
+                    <p>{{userInfoData[0].Email}}</p>
+                </div>
+                <div ng-if="editContant==true" class="col-lg-6 col-12">
+                    <p class="title-of-item">Mobile (Optional)</p> <input class="input-login hello-input"
+                        ng-model="user.Mobile">
+                    <p class="title-of-item">Email</p> <input class="input-login hello-input" ng-model="user.Email">
+                    <p>Updating your email address will automatically send a new verification link to the email address
+                        provided.</p> <button class="cancel-btn-lg mb-2"> <a href="/en/create-profile"> Cancel</a>
+                    </button> <button class="login-btn" ng-click="saveEditContactInfoFunc()"> <a
+                            href="/en/hello-page">Save changes</a> </button>
+                </div>
+                <hr class="hr-profile">
+            </div>
+            <div class="row pt-5">
+                <h3 class="col-lg-10 col-10">Password</h3>
+                <div class="col-lg-2 col-2 d-flex align-btn"> <button ng-if="editPassword==false" class="edit-btn"
+                        ng-click="editPasswordFunc()">Edit</button> <button ng-if="editPassword==true" class="edit-btn"
+                        ng-click="editPasswordFunc()">close</button> </div>
+            </div>
+            <div class="row">
+                <div ng-if="editPassword==false" class="col-lg-10 col-10">
+                    <p>*********</p>
+                </div>
+                <div ng-if="editPassword==true" class="col-lg-6 col-12">
+                    <div class="pb-5"> <input class="input-login" type="{{showPassword}}" placeholder="Current password"
+                            ng-model="user.oldPassword"> <img class="view-icon" src="/imgs/icons/view.svg"
+                            ng-click="showPasswordFunc()"> </div>
+                    <div class="pb-5"> <input class="input-login" type="{{showPassword}}" placeholder="new password"
+                            ng-model="user.newPassword"> <img class="view-icon" src="/imgs/icons/view.svg"
+                            ng-click="showPasswordFunc()"> </div>
+                    <div class="pb-5"> <input class="input-login" type="{{showPassword}}"
+                            placeholder="Confirm new password" ng-model="user.repeatPassword"> <img class="view-icon"
+                            src="/imgs/icons/view.svg" ng-click="showPasswordFunc()"> </div> <button
+                        class="cancel-btn-lg mb-2"> <a href="/en/create-profile"> Cancel</a> </button> <button
+                        class="login-btn" ng-click="resetPasswordFunc()"> <a href="/en/hello-page">Save changes</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div ng-If="openAccount==false">
+            <div class="row pt-5">
+                <h3 class="col-lg-10 col-10">Communication settings</h3>
+                <div class="col-lg-2 col-2 d-flex align-btn"> <button ng-if="editSetting==false" class="edit-btn"
+                        ng-click="editSettingFunc()">Edit</button> <button ng-if="editSetting==true" class="edit-btn"
+                        ng-click="editSettingFunc()">close</button> </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <p>Receiving some offers, tips and news via:</p>
+                </div>
+                <div ng-If="editSetting==true" class="col-lg-6 col-12">
+                    <div class="row">
+                        <div class="col-1"> <input type="checkbox" class="checkbox-round" /> </div>
+                        <div class="col-8 py-1">
+                            <p class="p-text">Via email</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"> <input type="checkbox" class="checkbox-round" /> </div>
+                        <div class="col-8 py-1">
+                            <p class="p-text">Via SMS</p>
+                        </div>
+                    </div> <button class="cancel-btn-lg mb-2"> <a href="/en/create-profile"> Cancel</a> </button>
+                    <button class="login-btn"> <a href="/en/hello-page">Save changes</a> </button>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <h3 class="col-lg-10 col-10">Delete profile</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-10">
+                    <p>You can delete your AlSAMAH account at any point. This deletes your profile and the info
+                        associated with it.</p>
+                    <h3 ng-click="removeAccountFunc()" style="cursor: pointer;">Want to remove account?</h3>
+                </div>
+            </div>
+            <div ng-class="{'nav-open-carts-btn': removeAccount == true , 'nav-close': removeAccount == false } ">
+                <div ng-class="{'nav-open-carts': removeAccount == true , 'nav-close-n': removeAccount == false } ">
+                    <div class="row">
+                        <h2 class="your-cart-title col-lg-11 col-11"></h2> <a class="closebtn col-lg-1 col-1"
+                            ng-click="removeAccountFunc()"> <img class="svg-icon-close" src="/imgs/icons/close.svg">
+                        </a>
+                    </div>
+                    <p class="title-delete-account pt-3">Are you sure you want to delete your profile?</p>
+                    <p class="pb-2">Time for a goodbye? We miss you already! Here's what happens when you delete your
+                        account:</p>
+                    <p class="pb-2"> You'll erase all of your personal information and favorites lists. We will still
+                        keep your purchase history for taxation and other legal reasons. </p>
+                    <p class="pb-2"> Just know, you're always welcome back for some Swedish cinnamon buns! </p>
+                    <p class="title-language mb-0">Questions?</p>
+                    <p class="pb-2">Contact Customer Service.</p>
+                    <p class="title-language mb-0">Password</p>
+                    <p class="pb-2">Please confirm with your password in order to continue and delete your account.</p>
+                    <div class=" "> <input class="input-login" type="{{showPassword}}" placeholder="Password"
+                            ng-model="user.Password"> <img class="view-icon" src="/imgs/icons/view.svg"
+                            ng-click="showPasswordFunc()"> </div>
+                    <div>
+                        <h6 ng-if="msg" style="color: #b50000;">{{msg}}</h6>
+                    </div>
+                    <div class="nav-open-carts-footer done-btn">
+                        <hr>
+                        <!--<button class="check-out-btn mt-3 not-active-btn-all"> <a href="delete-account.html?lang=en">Delete account</a> </button>-->
+                        <button class="check-out-btn mt-3" ng-click="deleteAcountFunc()"> <a
+                                style="color: white;">Delete account</a> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

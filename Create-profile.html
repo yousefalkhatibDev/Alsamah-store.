@@ -1,0 +1,28 @@
+<div class="site-container" ng-controller="createProfileController">
+    <div class="row">
+        <div class="col-lg-6 col-12 login-section-center">
+            <h4 class="login-title"> Create an Alsamah Profile </h4>
+            <h5 class="login-description"> Already have an account?<a href="/en/login" class="underline-p">Login</a>
+            </h5>
+        </div>
+        <div class="col-lg-6 col-12 login-section-center">
+            <div class="pb-5"> <input class="input-login" placeholder="First name" ng-model="user.firstName"> </div>
+            <div class="pb-5"> <input class="input-login" placeholder="Last name" ng-model="user.lastName"> </div>
+            <div class="pb-5"> <input class="input-login" placeholder="JO (+962)" ng-model="user.phone"> </div>
+            <div class="pb-5"> <input class="input-login" placeholder="Email (username)" ng-model="user.email"> </div>
+            <div class="pb-5"> <input class="input-login" id="password-input" placeholder="Password"
+                    ng-model="user.password"> <img class="view-icon" src="/imgs/icons/view.svg"
+                    ng-click="showPasswordFunc()"> </div>
+            <div class="pb-5" ng-if="msg">
+                <h6 style="color: #b50000;">{{msg}}</h6>
+            </div>
+            <div class="pb-2 d-flex"> <input type="checkbox">
+                <p class="px-2">I would like to receive news, tips and marketing offers from Alsamah.</p>
+            </div>
+            <div class="pb-5 d-flex"> <input type="checkbox">
+                <p class="px-2">I have read and understood the Privacy policy.</p>
+            </div>
+            <div class="pb-2"> <button class="login-btn" ng-click="SignUp()"> <a>Create profile</a></button> </div>
+        </div>
+    </div>
+</div>

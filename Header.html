@@ -1,0 +1,153 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<p></p>
+<div class="top-header" ng-if="hasTopHeader==true">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+        integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <p class="top-header-p">FREE SHIPPING ON ALL ORDERS UNTIL JUNE 6TH</p>
+</div>
+<div class="site-container-header" ng-controller="headerController"> <a
+        ng-class="{'home-topnav-menu-list-with-two-header': hasTopHeader == true ,'home-topnav-menu-list': hasTopHeader == false } "
+        ng-click="openMenu()" style="cursor: pointer;"> <img class="svg-icon e-rte-image e-imginline"
+            style="height: 50%;" src="/imgs/icons/menu.svg"> </a>
+    <div class="topnav">
+        <div class="row row-fix">
+            <div class="col-lg-1 w-logo col-sm-1 d-flex"> <a href="/en/home" class="logo"><img
+                        src="/imgs/icons/logo.webp" alt="logo" class="e-rte-image e-imginline"></a> </div>
+            <div class="search-container w-search-section col-lg-9 col-sm-2 p-0 d-flex"
+                ng-controller="searchProductsController"> <img
+                    class="svg-icon-search e-rte-image e-imginline e-resize e-img-focus" src="/imgs/icons/search.svg"
+                    ng-click="submitSearchData()" style=""> <input type="text" placeholder="what you are looking for?"
+                    name="search" id="search-input" ng-change="searchInputChange(searchInput)" ng-model="searchInput">
+            </div>
+            <div class="col-lg-2 w-menu-section col-sm-4 p-0 d-flex"> <a class="topnav-menu"
+                    href="/en/{{linkProfileHref}}"> <img class="svg-icon e-rte-image e-imginline"
+                        src="/imgs/icons/avatar.svg"> </a> <a class="topnav-menu" href="/en/favourite"> <img
+                        class="svg-icon e-rte-image e-imginline" src="/imgs/icons/heart.svg"> </a> <a href="#contact"
+                    class="topnav-menu" style="position: relative;" ng-click="openCart()"> <span
+                        class="badge-icon">{{shoppingCartLength}}</span> <img class="svg-icon e-rte-image e-imginline"
+                        src="/imgs/icons/shopping-bag.svg"> </a> <a href="#contact" class="topnav-menu-list-sm"
+                    ng-click="openMenu()"> <img class="svg-icon e-rte-image e-imginline" src="/imgs/icons/menu.svg">
+                </a> </div>
+        </div>
+    </div>
+    <div class="search-container-sm" ng-controller="searchProductsController"> <img
+            class="svg-icon-search e-rte-image e-imginline" src="/imgs/icons/search.svg" ng-click="submitSearchData()">
+        <input type="text" placeholder="what you are looking for?" name="search"
+            ng-change="searchInputChange(searchInput)" ng-model="searchInput"> </div>
+    <div class="second-header"> <a href="/en/products">PRODUCTS
+            <hr class="hr-underline">
+        </a> <a href="#k"> </a><a href="/en/offers">OFFERS
+            <hr class="hr-underline">
+        </a> <a href="#contact"> BRANCHES
+            <hr class="hr-underline">
+        </a> <a href="#contact"> </a><a href="/en/about-us">ABOUT US
+            <hr class="hr-underline">
+        </a> <a href="#contact" class="language-icon" ng-click="openRegion()"> <img src="/imgs/icons/egypt.svg"
+                class="e-rte-image e-imginline"> <span>EN</span> </a> </div> <a href="#contact" class="language-icon-sm"
+        ng-click="openRegion()"> <img src="/imgs/icons/egypt.svg" class="e-rte-image e-imginline"> <span>EN</span> </a>
+    <div>
+        <hr class="hr-header">
+    </div>
+    <div ng-class="{'nav-open': menuOpen == true ,'nav-close': menuOpen == false } ">
+        <div class="nav-open-menu row" ng-class="{'nav-open-n': menuOpen == true , 'nav-close-n': menuOpen == false } ">
+            <div class="col-2" style="margin-left: 1rem;"> <a class="closebtn" ng-click="openMenu()"> <img
+                        class="svg-icon-close e-rte-image e-imginline" src="/imgs/icons/close.svg"> </a> <a
+                    ng-if="productOpen==false" class="closebtn" ng-click="productOpenFunc()"> <img
+                        class="svg-icon-close e-rte-image e-imginline" src="/imgs/icons/arrow-left.svg"> </a> </div>
+            <div class="col-8"> <a href="/en/home" class="logo"><img style="height: 1rem" src="/imgs/icons/logo.webp"
+                        alt="logo" class="e-rte-image e-imginline"></a> <a ng-click="productOpenFunc()"
+                    style="width: 50%;">PRODUCTS</a> <a href="/en/offers"
+                    ng-class="{'hide': productOpen==false, 'show': productOpen==true}">OFFERS</a> <a
+                    ng-class="{'hide': productOpen==false, 'show': productOpen==true}">BRANCHES</a> <a
+                    href="/en/about-us" ng-class="{'hide': productOpen==false, 'show': productOpen==true}">ABOUT US</a>
+                <a ng-if="productOpen==false" ng-repeat="item in categoriseData" href="/en/products">
+                    <p>{{item.Description}}</p>
+                </a> </div>
+        </div>
+    </div>
+    <div ng-class="{'nav-open-carts-btn': cartOpen == true , 'nav-close': cartOpen == false } ">
+        <div ng-class="{'nav-open-carts': cartOpen == true , 'nav-close-n': cartOpen == false } ">
+            <div class="row">
+                <h2 class="your-cart-title col-lg-11 col-11">Your Cart</h2> <a class="closebtn col-lg-1 col-1"
+                    ng-click="openCart()"> <img class="svg-icon-close e-rte-image e-imginline"
+                        src="/imgs/icons/close.svg"> </a>
+            </div>
+            <hr ng-if="shoppingCartItems">
+            <div ng-repeat="item in shoppingCartItems track by $index">
+                <div class="row product-cart-section">
+                    <div class="col-3 img-section"> <img class="img-prod-cart e-rte-image e-imginline"
+                            src="{{item.imgSrc}}"> </div>
+                    <div class="col-6">
+                        <h4 class="title-product-cart">{{item.Description}}</h4>
+                        <p>{{item.Description}}</p>
+                        <div class="">
+                            <div class="number-items px-0"> <button class="add-one-btn"
+                                    ng-click="subtractFromItemQty(item)"> <span
+                                        class="material-icons icon-mat-cart">remove</span> </button>
+                                <p>{{item.Qty}}</p> <button class="add-one-btn" [class.with-icon]="true"
+                                    ng-click="addToItemQty(item)"> <span class="material-icons icon-mat-cart">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <p class=" text-align-end" style="cursor: pointer;" ng-click="removeFromCart(item)">Remove</p>
+                        <p class="sar-price"> <span class="span-symb" ng-if="!currency">USD</span> <span
+                                class="span-symb" ng-if="currency">{{currency}}</span> {{item.SalesPrice}} <span
+                                class="span-comma">.85</span> </p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <p class="mt-3" ng-if="shoppingCartItems.length">ORDER NOTE</p> <textarea
+                ng-if="shoppingCartItems.length"></textarea>
+            <div class="nav-open-carts-footer">
+                <hr>
+                <p class="mt-2" ng-if="shoppingCartItems.length">SUBTOTAL</p>
+                <p ng-if="shoppingCartItems.length">Shipping, taxes, and discount codes calculated at checkout.</p>
+                <p class="mt-2" ng-if="!shoppingCartItems.length" style="margin-top: 15px !important;">Looks like you
+                    haven't added anything to your shopping cart yet.</p> <a href="/en/products"
+                    style="text-decoration: none; color: black; font-size: 15px;">Shop all</a> <button
+                    class="check-out-btn" ng-if="shoppingCartItems.length"> <a href="/en/order">CHECK OUT</a> </button>
+            </div>
+        </div>
+    </div>
+    <div ng-class="{'nav-open-carts-btn': regionOpen == true , 'nav-close': regionOpen == false } ">
+        <div ng-class="{'nav-open-carts': regionOpen == true , 'nav-close-n': regionOpen == false } ">
+            <div class="row">
+                <h2 class="your-cart-title col-lg-11 col-11">Region Settings</h2> <a class="closebtn col-lg-1 col-1"
+                    ng-click="openRegion()"> <img class="svg-icon-close e-rte-image e-imginline"
+                        src="/imgs/icons/close.svg"> </a>
+            </div>
+            <hr>
+            <p class="title-language pt-3">Language</p>
+            <div class="row pb-3 g-0">
+                <div class="col-lg-4 col-4"> <button class="language-btn language-btn-active">English</button> </div>
+                <div class="col-lg-4 col-4"> <button class="language-btn">العربية</button> </div>
+                <div class="col-lg-4 col-4"> <button class="language-btn">Français</button> </div>
+            </div>
+            <hr>
+            <p class="title-language pt-3">Country</p>
+            <div ng-repeat="country in Countries">
+                <!-- language-btn-active -->
+                <div class="content-country mb-3 " style="cursor: pointer;"
+                    ng-click="changeCurrency(country.CurrencyID)">
+                    <div class="row py-2 g-0">
+                        <div class="col-2 d-flex"> <img class="flag-img e-rte-image e-imginline"
+                                src="/imgs/flags/{{country.Image}}"> </div>
+                        <div class="col-8 d-flex">
+                            <p class="prod-description">{{country.Description}}</p>
+                        </div>
+                        <div class="col-2 d-flex">
+                            <p class="prod-description">{{country.CurrencyID}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-open-carts-footer done-btn">
+                <hr> <button class="check-out-btn mt-3"> <a href="/en/home">Done</a> </button>
+            </div>
+        </div>
+    </div>
+</div>

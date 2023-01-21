@@ -1,0 +1,82 @@
+<div class="container-xxl" ng-controller="favouriteController">
+    <div class="container-xl">
+        <hr>
+        <div class="container-xl p-0 pt-4" ng-if="favouriteProductsLength === 0 && favoriteProductsLocalLength === 0">
+            <p class="login-title">You don’t seem to have any favorites yet</p>
+            <p>Save the best items until you’re ready for them.</p>
+            <p class="title-language"> <img class="svg-icon mx-1" src="/imgs/icons/heart.svg" />
+            <p>Use the heart icon to save products</p>
+            <p class="title-language"> <img class="svg-icon mx-1" src="/imgs/icons/avatar.svg" ng-if="!isLoggedIn" />
+            <p ng-if="!isLoggedIn">Join or login to view saved items on different devices</p>
+            <div class="row pt-4" ng-if="!isLoggedIn"> <button class="login-diff-design mx-4"> <a href="/en/login">
+                        Login</a> </button> <button class="create-account-btn-lg mx-4" style="display: inline-block;">
+                    <a href="/en/create-profile"> Create account</a> </button> </div>
+        </div>
+        <div class="col-12 flex" ng-if="favouriteProductsLength !== 0 && isLoggedIn">
+            <div class="row product-section pt-4 ">
+                <div class="col-lg-3 col-6 product-card-container"
+                    ng-repeat="prod in favouriteProducts.slice(0, favouriteProductsLength) track by $index"> <img
+                        class="heart-product" src="/imgs/icons/heart.svg"
+                        ng-click="removeFromFavorites(prod); heartAnimation($event)"> <img class="img-prod"
+                        src="/imgs/cream2.png"
+                        ng-click="goToDetails(prod.Description, prod.LongDescription, prod.SalesPrice, prod.ProductID)">
+                    <p class="shea-section"> <a class="shea-section-a"
+                            href="/en/product-details">{{prod.Description}}</a> </p>
+                    <p class="shea-description">{{prod.UOMDescription}}</p>
+                    <p class="sar-price"> <span class="span-symb" ng-if="currency">{{currency}}</span> <span
+                            class="span-symb" ng-if="!currency">USD</span> {{prod.SalesPrice}} <span
+                            class="span-comma">.85</span> </p>
+                    <div class="cart-option"
+                        ng-click="addToCartFunc(prod, 'imgs/cream2.png'); addToCartAnimation($event)"> <img
+                            class="shop-icon" src="/imgs/icons/shopping-bag.svg"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 flex" ng-if="favoriteProductsLocalLength !== 0 && !isLoggedIn">
+            <div class="row product-section pt-4 ">
+                <div class="col-lg-3 col-6 product-card-container"
+                    ng-repeat="prod in favoriteProductsLocal.slice(0, favoriteProductsLocalLength)"> <img
+                        class="heart-product" src="/imgs/icons/heart.svg"
+                        ng-click="removeFromFavoritesLocal(prod); heartAnimation($event)"> <img class="img-prod"
+                        src="/imgs/cream2.png"
+                        ng-click="goToDetails(prod.Description, prod.LongDescription, prod.SalesPrice, prod.ProductID)">
+                    <p class="shea-section"> <a class="shea-section-a"
+                            href="/en/product-details">{{prod.Description}}</a> </p>
+                    <p class="shea-description">{{prod.UOMDescription}}</p>
+                    <p class="sar-price"> <span class="span-symb" ng-if="currency">{{currency}}</span> <span
+                            class="span-symb" ng-if="!currency">USD</span> {{prod.SalesPrice}} <span
+                            class="span-comma">.85</span> </p>
+                    <div class="cart-option"
+                        ng-click="addToCartFunc(prod, 'imgs/cream2.png'); addToCartAnimation($event)"> <img
+                            class="shop-icon" src="/imgs/icons/shopping-bag.svg"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-xl col-12 flex">
+            <p class="section-name">RECOMMENDED FOR YOU</p>
+            <div class="col-12 flex">
+                <div class="row product-section pt-4">
+                    <div class="col-lg-3 col-6 product-card-container" ng-repeat="prod in products.slice(0, 4)"> <img
+                            class="heart-product" src="/imgs/icons/heart.svg" ng-if="isLoggedIn"
+                            ng-click="addToFavouriteFunc(prod.ProductID); heartAnimation($event)"> <img
+                            class="heart-product" src="/imgs/icons/heart.svg" ng-if="!isLoggedIn"
+                            ng-click="addToFavouriteFunc(prod); heartAnimation($event)"> <img class="img-prod"
+                            src="/imgs/cream2.png"
+                            ng-click="goToDetails(prod.Description, prod.LongDescription, prod.SalesPrice, prod.ProductID)">
+                        <p class="shea-section"> <a class="shea-section-a"
+                                href="/en/product-details">{{prod.Description}}</a> </p>
+                        <p class="shea-description">{{prod.UOMDescription}}</p>
+                        <p class="sar-price"> <span class="span-symb" ng-if="currency">{{currency}}</span> <span
+                                class="span-symb" ng-if="!currency">USD</span> {{prod.SalesPrice}} <span
+                                class="span-comma">.85</span> </p>
+                        <div class="cart-option"
+                            ng-click="addToCartFunc(prod, '/imgs/cream2.png'); addToCartAnimation($event)"> <img
+                                class="shop-icon" src="/imgs/icons/shopping-bag.svg"> </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/scroll-animation.js"></script>

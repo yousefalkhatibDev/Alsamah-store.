@@ -1,0 +1,99 @@
+<div class="logo-section-sm"> <img class="my-4" src="/imgs/icons/logo.webp" alt="logo"> </div>
+<div class="order-content" ng-controller="OrderController">
+    <div class="order-left-section"> <a href="/en/home"> <img class="my-4" src="/imgs/icons/logo.webp" alt="logo"> </a>
+        <form [formGroup]="form">
+            <div class="head-left-section">
+                <p class="active">Information </p>
+                <p class="px-2 active"> > </p>
+                <p class="px-2 active"> Shipping </p>
+                <p class="px-2 not-active"> > </p>
+                <p class="px-2 not-active"> Payment</p>
+            </div>
+            <div class="contact-section">
+                <div class="row px-4 pt-3">
+                    <div class="col-2">
+                        <p class="p-text">Contact</p>
+                    </div>
+                    <div class="col-8">
+                        <p class="p-text">issatrio2021@gmail.com</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="p-text">Change</p>
+                    </div>
+                </div>
+                <hr class="hr-90">
+                <div class="row px-4 pt-3">
+                    <div class="col-2">
+                        <p class="p-text">Ship to</p>
+                    </div>
+                    <div class="col-8">
+                        <p class="p-text">amman, amman 11118, Jordan</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="p-text">Change</p>
+                    </div>
+                </div>
+            </div>
+            <h4 class="my-3 mt-4 order-title">Shipping method</h4>
+            <div class="contact-section">
+                <div class="row px-4 pt-3">
+                    <div class="col-1"> <input type="checkbox" class="checkbox-round" id="#freeShippingCheck"
+                            ng-model="freeShippingCheck" ng-click="paidShippingCheck = false" /> </div>
+                    <div class="col-8 py-1">
+                        <p class="p-text">(للطلبات الاكثر من 20 دينار) Free delivery - توصيل مجاني
+                    </div>
+                    <div class="col-3 price-shipping py-1">
+                        <p class="text-align-end">Free</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row px-4 pt-3">
+                    <div class="col-1"> <input type="checkbox" class="checkbox-round" id="#paidShippingCheck"
+                            ng-model="paidShippingCheck" ng-click="freeShippingCheck = false" /> </div>
+                    <div class="col-8 py-1">
+                        <p class="p-text">باقي المحافظات - Other Government</p>
+                    </div>
+                    <div class="col-3 price-shipping py-1">
+                        <p class="text-align-end">JOD 3.750</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row continue-section"> <button class="continue-btn col-12 col-lg-4"> <a
+                    href="/en/order-payment">Continue to payment</a> </button> <a
+                class="col-12 col-lg-5 continue-section-a" href="/en/order">Return to information</a> </div>
+        <hr>
+        <div class="head-left-section pt-3">
+            <p class="">Refund policy </p>
+            <p class="px-3"> Privacy policy</p>
+            <p class=""> Terms of service</p>
+        </div>
+    </div>
+    <div class="order-right-section">
+        <div ng-repeat="item in shoppingCartItems track by $index">
+            <div class="row pb-2">
+                <div class="col-lg-2 col-2 img-box"> <img src="{{item.imgSrc}}" alt=""> </div>
+                <div class="col-lg-7 col-7">
+                    <p>{{item.Description}}</p>
+                </div>
+                <div class="col-lg-3 col-3 price-item">
+                    <p>JOD {{item.SalesPrice}}85</p>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <hr class="mb-3"> <input required placeholder="Gift card or discount code"
+                class="mb-2 col-lg-8 col-8 input-style"> <button class="mb-2 apply-btn col-3 col-lg-3"> Apply </button>
+        </div>
+        <div class="row pb-2 pt-2">
+            <hr> <label class="col-lg-10 col-9 px-0 pt-3 label-text">Subtotal</label> <label
+                class="col-lg-2 col-3 px-0 pt-3 subtotal-value">JOD 10.000</label>
+        </div>
+        <div class="row pb-3 pt-3"> <label class="col-lg-8 col-7 p-0 label-text">Shipping</label> <label
+                class="col-lg-4 col-5 p-0 label-text subtotal-value text-align-end">Free</label> </div>
+        <div class="row pb-3">
+            <hr class="mb-2"> <label class="col-lg-8 col-7 p-0 total-label">Total</label> <label
+                class="col-lg-4 col-5 p-0 total-value">JOD 10.000</label>
+        </div>
+    </div>
+</div>

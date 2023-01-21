@@ -1,0 +1,117 @@
+<div class="site-container" ng-controller="productController">
+    <div class="location-head d-flex">
+        <p class="">Products </p>
+        <p class="px-2"> > </p>
+        <p class="px-2"> Shea Body Butter </p>
+    </div>
+    <h1 class="product-title">Shea Body Butter</h1>
+    <div class="clearfix">
+        <div class="select-right view-type-container">
+            <p class="items-p">{{productsLength}} items</p> <button class="view-type-btn">Product</button><button
+                class="view-type-btn">view type</button>
+        </div>
+        <div class="select-right view-type-container-small">
+            <div> <button class="view-type-btn">Product</button><button class="view-type-btn">view type</button> </div>
+            <p class="items-p">{{productsLength}} items</p>
+        </div>
+    </div>
+    <div class="pb-2 select-type-container"> <select class="select-type select-large-screen priceFilter"
+            name="singleSelect" id="priceFilter" ng-change="priceFilterFunc()" ng-model="priceFilter">
+            <option class="option-type" selected disabled value="option-1" style="padding-left: 0.5rem;">Price</option>
+            <option class="option-type" value="10">Less than 10$</option>
+            <option class="option-type" value="50">Less than 50$</option>
+            <option class="option-type" value="51">More than 50$</option>
+        </select> <select class="select-type select-large-screen" name="singleSelect" id="sizeFilter">
+            <option class="option-type" value="option-1" selected disabled>Size</option>
+            <option class="option-type" value="option-2">Option 2</option>
+        </select> <button class="select-type filter-btn select-large-screen"> In stock at Amman </button> <select
+            class="select-type" name="singleSelect" id="sortFilter">
+            <option class="option-type" value="option-1" selected disabled>sort</option>
+            <option class="option-type" value="option-2">Option 2</option>
+        </select> <select class="select-type select-large-screen materialFilter" name="singleSelect"
+            id="materialFilter">
+            <option class="option-type" value="option-1" selected disabled>Material</option>
+            <option class="option-type" value="option-2">Option 2</option>
+        </select> <button class="filter-btn filter-btn-all" ng-click="openFilterDrawer()"> All filters <img
+                class="img-filter" src="/imgs/icons/filter.svg"> </button> <select
+            class="select-type select-right select-large-screen" name="singleSelect" ng-change="azFilterFunc()"
+            ng-model="azFilter" id="azFilter">
+            <option class="option-type" disabled value="option-1" selected>A-Z</option>
+            <option class="option-type" value="A-Z">Filter</option>
+            <option class="option-type" value="Nothing">Nothing</option>
+        </select> </div>
+    <div ng-class="{'nav-open-filters': filterDrawerOpen == true ,'nav-close': filterDrawerOpen == false } ">
+        <div class="nav-open-filters-menu row"
+            ng-class="{'nav-open-n': filterDrawerOpen == true , 'nav-close-n': filterDrawerOpen == false } ">
+            <div class="col-2" style="margin-left: 2rem;"> <a class="closebtn" ng-click="openFilterDrawer()"> <img
+                        class="svg-icon-close" src="/imgs/icons/close.svg"> </a> <a ng-if="productOpen==false"
+                    class="closebtn" ng-click="openFilterDrawer()"> <img class="svg-icon-close"
+                        src="/imgs/icons/arrow-left.svg"> </a> </div>
+            <div class="col-8"> <a>
+                    <h1 style="font-size: 25px;">Filters</h1>
+                </a> </div>
+            <div class="col-8" style="width: 97%;margin-top: -275px;">
+                <hr style="border: 1px inset;"> <select class="select-type select-type-in-drawer" name="singleSelect"
+                    ng-change="priceFilterFunc()" ng-model="priceFilter" id="priceFilterDrawer">
+                    <option class="option-type" selected disabled value="option-1" style="padding-left: 0.5rem;">Price
+                    </option>
+                    <option class="option-type" value="10">Less than 10$</option>
+                    <option class="option-type" value="50">Less than 50$</option>
+                    <option class="option-type" value="51">More than 50$</option>
+                </select>
+                <hr class="hr-top-select" style="border: 1px inset;"> <select class="select-type select-type-in-drawer"
+                    name="singleSelect" id="sizeFilterDrawer">
+                    <option class="option-type" selected value="option-1" disabled>Size</option>
+                    <option class="option-type" value="option-2">Option 2</option>
+                </select>
+                <hr class="hr-top-select" style="border: 1px inset;"> <button
+                    class="select-type filter-btn select-type-in-drawer"> In stock at Amman </button>
+                <hr class="hr-top-select" style="border: 1px inset;"> <select class="select-type select-type-in-drawer"
+                    style="width: 13%; padding-left: 0.5rem;" name="singleSelect" id="materialFilterDrawer">
+                    <option class="option-type" selected value="option-1" disabled>Material</option>
+                    <option class="option-type" value="option-2">Option 2</option>
+                </select>
+                <hr class="hr-top-select" style="border: 1px inset;"> <select
+                    class="select-type select-right select-type-in-drawer" name="singleSelect"
+                    ng-change="azFilterFunc()" ng-model="azFilter" id="azFilterDrawer">
+                    <option class="option-type" selected disabled value="option-1">A-Z</option>
+                    <option class="option-type" value="A-Z">Filter</option>
+                    <option class="option-type" value="Nothing">Nothing</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12 flex">
+        <div class="row product-section product-page-section pt-4 hidden">
+            <div class="col-lg-3 col-6 product-card-container" ng-repeat="prod in products.slice(0, productNumber)">
+                <img class="heart-product" src="/imgs/icons/heart.svg" ng-if="isLoggedIn"
+                    ng-click="addToFavouriteFunc(prod.ProductID); heartAnimation($event)"> <img class="heart-product"
+                    src="/imgs/icons/heart.svg" ng-if="!isLoggedIn"
+                    ng-click="addToFavouriteFunc(prod); heartAnimation($event)"> <img class="img-prod"
+                    src="/imgs/cream2.png"
+                    ng-click="goToDetails(prod.Description, prod.LongDescription, prod.SalesPrice, prod.ProductID)">
+                <p class="shea-section"> <a class="shea-section-a" href="/en/product-details">{{prod.Description}}</a>
+                </p>
+                <p class="shea-description">{{prod.UOMDescription}}</p>
+                <p class="sar-price"> <span class="span-symb" ng-if="currency">{{currency}}</span> <span
+                        class="span-symb" ng-if="!currency">USD</span> {{prod.SalesPrice}} <span
+                        class="span-comma">.85</span> </p>
+                <div class="cart-option" ng-click="addToCartFunc(prod, '/imgs/cream2.png'); heartAnimation($event)">
+                    <img class="shop-icon" src="/imgs/icons/shopping-bag.svg"> </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="d-flex center-position pt-3">
+        <p>Showing {{productNumber}} of {{productsLength}}</p>
+    </div>
+    <hr class="hr-show-more-line">
+    <div class="center-position pb-4"> <button ng-if="products.length !== 0" class="show-more" ng-click="showMore()">
+            show more </button> <button ng-if="products.length == 0" class="show-more" ng-click="resetFilters()"> reset
+            filters </button> </div>
+</div>
+<script src="/js/scroll-animation.js"></script>
+<script src="/lib/custom-select/dist/js/nice-select2.js"></script>
+<link rel="stylesheet" href="/lib/custom-select/dist/css/nice-select2.css">
+<script> NiceSelect.bind(document.getElementById("priceFilter")); NiceSelect.bind(document.getElementById("priceFilterDrawer")); NiceSelect.bind(document.getElementById("sizeFilter")); NiceSelect.bind(document.getElementById("sizeFilterDrawer")); NiceSelect.bind(document.getElementById("sortFilter")); NiceSelect.bind(document.getElementById("materialFilter")); NiceSelect.bind(document.getElementById("materialFilterDrawer")); NiceSelect.bind(document.getElementById("azFilter")); NiceSelect.bind(document.getElementById("azFilterDrawer")); </script>

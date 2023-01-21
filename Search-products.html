@@ -1,0 +1,24 @@
+<div class="site-container" ng-controller="searchProductsController">
+    <h4 class="section-name">Search Results for: {{value}}</h4>
+    <div class="product-section row d-flex hidden">
+        <div class="col-lg-3 col-6 product-card-container"
+            ng-repeat="item in products.slice(sellerProductspageNumber, lenghtOfProducts + sellerProductspageNumber )">
+            <img class="heart-product e-rte-image e-imginline" src="/imgs/icons/heart.svg" ng-if="isLoggedIn"
+                ng-click="addToFavouriteFunc(item.ProductID); heartAnimation($event)"> <img
+                class="heart-product e-rte-image e-imginline" src="/imgs/icons/heart.svg" ng-if="!isLoggedIn"
+                ng-click="addToFavouriteFunc(item); heartAnimation($event)"> <img
+                class="img-prod e-rte-image e-imginline" ng-src="/imgs/ceam1.png" alt="dd"
+                ng-click="goToDetails(item.Description, item.LongDescription, item.SalesPrice, item.ProductID)">
+            <p class="shea-section"> <a class="shea-section-a"
+                    ng-click="goToDetails(item.Description, item.LongDescription, item.SalesPrice, item.ProductID)">{{item.Description}}</a>
+            </p>
+            <p class="shea-description">{{item.UOMDescription}}</p>
+            <p class=""> <span class="span-symb" ng-if="currency">{{currency}}</span> <span class="span-symb"
+                    ng-if="!currency">USD</span> <span class="sar-price">{{item.SalesPrice}}</span> <span
+                    class="span-comma">.85</span> </p>
+            <div class="cart-option" ng-click="addToCartFunc(item, '/imgs/ceam1.png'); addToCartAnimation($event)"> <img
+                    class="shop-icon e-rte-image e-imginline" src="/imgs/icons/shopping-bag.svg"> </div>
+        </div>
+    </div>
+</div>
+<script src="/js/scroll-animation.js"></script>

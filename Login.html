@@ -1,0 +1,26 @@
+<div class="site-container" ng-controller="loginController">
+    <div class="row">
+        <div class="col-lg-6 col-12 login-section-center">
+            <h4 class="login-title"> Login to your ALSAMAH account </h4>
+            <h5 class="login-description"> Login or create an account to access your latest shopping lists and shopping
+                cart within our website and IKEA Shopping app. Or save your designs in our planning tools. </h5>
+            <div class="py-3"> <button class="create-account-btn-lg"> <a href="/en/create-profile"> Create account</a>
+                </button> </div>
+        </div>
+        <div class="col-lg-6 col-12 login-section-center">
+            <div class="pb-5"> <input class="input-login" placeholder="Email (username)" ng-model="user.Email"> </div>
+            <div class="pb-5"> <input class="input-login" id="password-input" type="{{showPassword}}"
+                    placeholder="Password" ng-model="user.Password"> <img class="view-icon" src="/imgs/icons/view.svg"
+                    ng-click="showPasswordFunc()"> </div>
+            <div class="pb-5" ng-if="errorMsg">
+                <h6 style="color: #b50000;">{{errorMsg}}</h6>
+            </div>
+            <div class="pb-1">
+                <p class="underline-p pb-">Forgot your password?</p>
+            </div>
+            <div class="pb-1"> <button class="login-btn" ng-click="SignIn()"> <a>Login</a> </button> </div>
+            <div class="py-3"> <button class="create-account-btn-sm"> <a href="/en/create-profile"> Create account</a>
+                </button> </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="order-content" ng-controller="OrderController">
+    <div class="order-left-section"> <a href="/en/home"> <img class="my-4" src="/imgs/icons/logo.webp" alt="logo"> </a>
+        <form [formGroup]="form">
+            <div class="head-left-section">
+                <p class="active">Information </p>
+                <p class="px-2 not-active"> > </p>
+                <p class="px-2 not-active"> Shipping </p>
+                <p class="px-2 not-active"> > </p>
+                <p class="px-2 not-active"> Payment</p>
+            </div>
+            <div class="row p-0 pt-3">
+                <h4 class="col-lg-6 col-12 order-title">Contact information</h4>
+                <p class="col-lg-6 col-12 align-end">Already have an account?<span class="login-span">Log in</span> </p>
+            </div> <input formControlName="email" name="email" placeholder="Email" class="w-100 my-2 input-style"
+                ng-model="user.email"> <input type="checkbox" class="my-2"> <label class="my-2 label-text"> Email me
+                with news and offers</label>
+            <h4 class="order-title pt-3">Shipping address</h4>
+            <div class="row">
+                <div class="col-6"> <input required name="firtName" formControlName="firstName" placeholder="Firt Name"
+                        ng-model="user.firstName" class="w-100 my-2 input-style"> </div>
+                <div class="col-6"> <input required name="lastName" formControlName="lastName" placeholder="Last Name"
+                        ng-model="user.lastName" class="w-100 my-2 input-style"> </div>
+            </div> <input name="address" formControlName="address" placeholder="Address (اسم الشارع و رقم العمارة)"
+                ng-model="user.address" class="w-100 my-2 input-style"> <input name="email"
+                placeholder="Apartment, suite, etc. (optional)" class="w-100 my-2 input-style"
+                ng-model="user.apartment">
+            <div class="row">
+                <div class="col-6"> <input name="city" placeholder="City" class="w-100 my-2 input-style"
+                        ng-model="user.city"> </div>
+                <div class="col-6"> <input name="area" placeholder="Area (اسم المنطقة)" class="w-100 my-2 input-style"
+                        ng-model="user.area"> </div>
+            </div> <input name="phoneNumber" formControlName="phoneNumber" placeholder="Phone: +962 7XXXXXXXX"
+                ng-model="user.phone" class="w-100 my-2 input-style"> <input type="checkbox" class="my-2"> <label
+                class="my-2 label-text"> Save this information for next time</label>
+        </form>
+        <div class="continue-section"> <button class="continue-btn" ng-click="continueOrderFunc()"> <a> Continue to
+                    shipping </a> </button> </div>
+        <hr>
+        <div class="head-left-section">
+            <p class="pt-2">Refund policy </p>
+            <p class="px-3 pt-2"> Privacy policy</p>
+            <p class="pt-2"> Terms of service</p>
+        </div>
+    </div>
+    <div class="order-right-section">
+        <div ng-repeat="item in shoppingCartItems track by $index">
+            <div class="row pb-2">
+                <div class="col-lg-2 col-2 img-box"> <img src="{{item.imgSrc}}" alt=""> </div>
+                <div class="col-lg-8 col-8">
+                    <p>{{item.Description}}</p>
+                </div>
+                <div class="col-lg-2 col-2 price-item">
+                    <p class="align-end">JOD {{item.SalesPrice}}.85</p>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <hr>
+        </div>
+        <div class="row pt-3"> <input required name="firtName" formControlName="firstName" placeholder="Firt Name"
+                class="mb-2 col-lg-8 col-8 input-style"> <button class="mb-2 apply-btn col-3 col-lg-3"> Apply </button>
+        </div>
+        <div class="row pt-3">
+            <hr>
+        </div>
+        <div class="row pb-2 pt-2"> <label class="col-lg-10 col-9 p-0 label-text">Subtotal</label> <label
+                class="col-lg-2 col-3 p-0 subtotal-value">JOD 10.000</label> </div>
+        <div class="row pb-2"> <label class="col-lg-8 col-7 p-0 label-text">Shipping</label> <label
+                class="col-lg-4 col-5 p-0 label-text subtotal-value text-align-end">Calculated at next step</label>
+        </div>
+        <div class="row pt-3">
+            <hr>
+        </div>
+        <div class="row pb-3 pt-2"> <label class="col-lg-8 col-7 p-0 total-label">Total</label> <label
+                class="col-lg-4 col-5 p-0 total-value">JOD 10.000</label> </div>
+    </div>
+</div>

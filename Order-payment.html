@@ -1,0 +1,128 @@
+<div class="logo-section-sm"> <img class="my-4" src="/imgs/icons/logo.webp" alt="logo"> </div>
+<div class="order-content" ng-controller="orderPaymentController">
+    <div class="order-left-section"> <a href="/en/home"> <img class="my-4" src="/imgs/icons/logo.webp" alt="logo"> </a>
+        <form [formGroup]="form">
+            <div class="head-left-section">
+                <p class="active">Information </p>
+                <p class="px-2 active"> > </p>
+                <p class="px-2 active"> Shipping </p>
+                <p class="px-2 active"> > </p>
+                <p class="px-2 active"> Payment</p>
+            </div>
+            <div class="contact-section">
+                <div class="row px-4 pt-3" style="padding-left: 0.5px; padding-right: 0.5px;">
+                    <div class="col-2">
+                        <p class="p-text">Contact</p>
+                    </div>
+                    <div class="col-8" style="margin-top: -5px; width: 60%;"> <input type="email" class="shippingEmail"
+                            value="issatrio2021@gmail.com"> </div>
+                    <div class="col-2">
+                        <p class="p-text">Change</p>
+                    </div>
+                </div>
+                <hr class="hr-90">
+                <div class="row px-4 pt-3" style="padding-left: 0.5px; padding-right: 0.5px;">
+                    <div class="col-2">
+                        <p class="p-text">Ship to</p>
+                    </div>
+                    <div class="col-8" style="width: 60%;">
+                        <p class="p-text">amman, amman 11118, Jordan</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="p-text">Change</p>
+                    </div>
+                </div>
+            </div>
+            <h4 class="my-3 mt-4 order-title">Payment</h4>
+            <p>All transactions are secure and encrypted.</p>
+            <div class="contact-section">
+                <div class="row px-4 pt-3">
+                    <div class="col-1"> <input type="checkbox" class="checkbox-round" ng-model="methodCreditCard"
+                            ng-click="creditCardOpenFunc()" /> </div>
+                    <div class="col-11 py-1">
+                        <p class="">{{data[0].MethodTypeID}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row px-2 py-2 open-payment-method mx-0" ng-if="creditCardOpen==true"> <input
+                        placeholder="Card number" class="w-100 my-2 input-style"> <input placeholder="Name on card"
+                        class="w-100 my-2 input-style">
+                    <div class="row px-0 mx-0">
+                        <div class="col-6 px-0"> <input placeholder="Expiration date (MM / YY)"
+                                class="w-100 my-2 input-style"> </div>
+                        <div class="col-6 px-0"> <input placeholder="Security code" class="w-100 my-2 input-style">
+                        </div>
+                    </div>
+                </div>
+                <hr ng-if="creditCardOpen==true">
+                <div class="row px-4 pt-3">
+                    <div class="col-1"> <input type="checkbox" class="checkbox-round" ng-model="methodCash"
+                            ng-click="cashOpenFunc()" /> </div>
+                    <div class="col-11 py-1">
+                        <p class="">{{data[1].MethodTypeID}}</p>
+                    </div>
+                </div>
+                <hr ng-if="cashOpen==true">
+                <div class="row px-4 py-4 open-payment-method mx-0" ng-if="cashOpen==true">
+                    <p>Pay in cash at the delivery of your product.</p>
+                    <p>If you are sending the product as a gift to someone, please pay with credit card.</p>
+                </div>
+            </div>
+            <h4 class="my-3 mt-4 order-title">Billing address</h4>
+            <p>Select the address that matches your card or payment method</p>
+            <div class="contact-section">
+                <div class="row px-4 pt-3">
+                    <div class="col-1"> <input type="checkbox" class="checkbox-round" ng-model="sameAsAddress"
+                            ng-click="differentAddress = false" /> </div>
+                    <div class="col-11 py-1">
+                        <p class="">Same as shipping address</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row px-4 pt-3">
+                    <div class="col-1"> <input type="checkbox" class="checkbox-round" ng-model="differentAddress"
+                            ng-click="sameAsAddress = false" /> </div>
+                    <div class="col-11 py-1">
+                        <p class="">Use a different billing address</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row continue-section"> <button class="continue-btn col-12 col-lg-4" ng-click="retailPaymentFunc()">
+                <a>Complete order</a> </button> <a class="col-12 col-lg-5 continue-section-a" hhref="/en/order">Return
+                to shipping</a> </div>
+        <hr>
+        <div class="head-left-section pt-3">
+            <p class="">Refund policy </p>
+            <p class="px-3"> Privacy policy</p>
+            <p class=""> Terms of service</p>
+        </div>
+    </div>
+    <div class="order-right-section">
+        <div class="row pt-3">
+            <div ng-repeat="item in shoppingCartItems track by $index">
+                <div class="row pb-2">
+                    <div class="col-lg-2 col-2 img-box"> <img src="{{item.imgSrc}}" alt=""> </div>
+                    <div class="col-lg-7 col-7">
+                        <p>{{item.Description}}</p>
+                    </div>
+                    <div class="col-lg-3 col-3 price-item">
+                        <p>JOD {{item.SalesPrice}}85</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="mb-3"> <input required placeholder="Gift card or discount code"
+                class="mb-2 col-lg-8 col-8 input-style"> <button class="mb-2 apply-btn col-3 col-lg-3"> Apply </button>
+        </div>
+        <div class="row pb-2 pt-2">
+            <hr> <label class="col-lg-10 col-9 px-0 pt-3 label-text">Subtotal</label> <label
+                class="col-lg-2 col-3 px-0 pt-3 subtotal-value">JOD 10.000</label>
+        </div>
+        <div class="row pb-3 pt-3"> <label class="col-lg-8 col-7 p-0 label-text">Shipping</label> <label
+                class="col-lg-4 col-5 p-0 label-text subtotal-value text-align-end">Free</label> </div>
+        <div class="row pb-3">
+            <hr class="mb-2"> <label class="col-lg-8 col-7 p-0 total-label">Total</label> <label
+                class="col-lg-4 col-5 p-0 total-value">JOD 10.000</label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="site-container" ng-controller="productDetailsController">
+    <div class=" p-0">
+        <div class="d-flex location-head">
+            <p class="">Products&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp; Shea Body Butter
+                &nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp; Shea Body Butter -Jasmin Scent with Dead Sea Minerals
+            </p>
+        </div>
+        <div class="row product-details-section">
+            <div class="col-lg-4 left-side">
+                <h5 class="left-side-title">{{productDescription}}</h5>
+                <p class="prod-description"> {{productDescription}} </p>
+                <h5 class="left-side-title pt-4">IMPORTANT INGREDIENTS</h5>
+                <p class="prod-description"> {{productLongDescription}} </p>
+            </div>
+            <div class="col-lg-4 center-side container-xl"> <img class="prod-img-center" src="/imgs/ceam1.png">
+                <div class="row"> <img class="col-lg-3 col-3" src="/imgs/ceam1.png"> <img class="col-lg-3 col-3"
+                        src="/imgs/ceam1.png"> <img class="col-lg-3 col-3" src="/imgs/ceam1.png"> <img
+                        class="col-lg-3 col-3" src="/imgs/ceam1.png"> </div>
+            </div>
+            <div class="col-lg-4 right-side container-xl">
+                <p class="title">{{productLongDescription}}</p>
+                <p>{{productDescription}}</p>
+                <div class="row" ng-controller="sharedController">
+                    <div class="col-lg-8 col-8">
+                        <div class="number-items px-0"> <button class="add-one-btn"
+                                ng-click="subtractFromCartNumberFunc()"> <span
+                                    class="material-icons icon-mat">remove</span> </button>
+                            <p>{{addToCartNumber}}</p> <button class="add-one-btn" [class.with-icon]="true"
+                                ng-click="addToCartNumberFunc()"> <span class="material-icons icon-mat">add</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-4">
+                        <p class="sar-price"> <span class="span-symb" ng-if="currency">{{currency}}</span> <span
+                                class="span-symb" ng-if="!currency">USD</span> {{productSalesPrice}} <span
+                                class="span-comma">.85</span> </p>
+                    </div>
+                </div>
+                <p>Tax included. Shipping calculated at checkout.</p>
+                <hr>
+                <p class="pt-2">Delivery Available</p>
+                <p>In stock, ready to ship</p>
+                <div class="add-cart"> <button class="add-cart-btn" ng-click="addToCartFunc('/imgs/ceam1.png')"> <a
+                            style="color: white;">Add to cart</a> </button>
+                    <div class="love-cart mx-2"> <img src="/imgs/icons/heart.svg"
+                            ng-click="addToFavouriteFunc(); heartAnimation($event)" style="cursor: pointer;"> </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h4 class="section-name">YOU MIGHT LIKE</h4>
+        <div class="container-xl col-12 flex mb-5">
+            <div class="row product-section">
+                <div class="col-lg-3 col-6" ng-repeat="prod in products.slice(0, 4)"> <img
+                        class="heart-product e-rte-image e-imginline" src="/imgs/icons/heart.svg" ng-if="isLoggedIn"
+                        ng-click="addToFavouriteFunc(prod.ProductID); heartAnimation($event)"> <img
+                        class="heart-product e-rte-image e-imginline" src="/imgs/icons/heart.svg" ng-if="!isLoggedIn"
+                        ng-click="addToFavouriteFunc(prod); heartAnimation($event)"> <img class="img-prod"
+                        src="/imgs/ceam1.png"
+                        ng-click="goToDetails(prod.Description, prod.LongDescription, prod.SalesPrice, prod.ProductID)">
+                    <p class="shea-section">{{prod.Description}}</p>
+                    <p class="shea-description">{{prod.UOMDescription}}</p>
+                    <p class="sar-price"> <span class="span-symb" ng-if="currency">{{currency}}</span> <span
+                            class="span-symb" ng-if="!currency">USD</span> {{prod.SalesPrice}} <span
+                            class="span-comma">.85</span> </p>
+                    <div class="cart-option" ng-click="addToCart(prod, '/imgs/ceam1.png'); addToCartAnimation($event)">
+                        <img class="shop-icon" src="/imgs/icons/shopping-bag.svg"> </div>
+                </div>
+            </div>
+            <hr>
+            <hr class="hr-center">
+        </div>
+    </div>
+</div>
